@@ -18,14 +18,14 @@ public class TransferMarketApp {
             gestor.carregarDeArquivo(caminhoArquivo);
             System.out.println("Transferências carregadas do arquivo:");
             for (Transferencia t : gestor.getTransferencias()) {
-                System.out.println("Jogador: " + t.getJogador().getNome() +
-                        ", Idade: " + t.getJogador().getIdade() +
-                        ", Posição: " + t.getJogador().getPosicao() +
-                        ", Nacionalidade: " + t.getJogador().getNacionalidade() +
-                        ", Clube Origem: " + t.getClubeOrigem().getNome() +
-                        ", Clube Destino: " + t.getClubeDestino().getNome() +
-                        ", Valor: " + String.format("%.0f", t.getValor()) +
-                        ", Data da Transferência: " + t.getData());
+                System.out.println(" * Jogador: " + t.getJogador().getNome());
+                System.out.println(" * Idade: " + t.getJogador().getIdade());
+                System.out.println(" * Posição: " + t.getJogador().getPosicao());
+                System.out.println(" * Nacionalidade: " + t.getJogador().getNacionalidade());
+                System.out.println(" * Clube Origem: " + t.getClubeOrigem().getNome());
+                System.out.println(" * Clube Destino: " + t.getClubeDestino().getNome());
+                System.out.println(" * Valor: " + String.format("%.0f", t.getValor()));
+                System.out.println(" * Data da Transferência: " + t.getData());
             }
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
