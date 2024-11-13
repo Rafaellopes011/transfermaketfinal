@@ -1,0 +1,29 @@
+class Jogador extends Pessoa implements Transacionavel {
+    private String posicao;
+    private String clubeAtual;
+    private double valorDeMercado;
+
+    public Jogador(String nome, int idade, String nacionalidade, String posicao, String clubeAtual, double valorDeMercado) {
+        super(nome, idade, nacionalidade);
+        this.posicao = posicao;
+        this.clubeAtual = clubeAtual;
+        this.valorDeMercado = valorDeMercado;
+    }
+
+    public String getPosicao() { return posicao; }
+    public void setPosicao(String posicao) { this.posicao = posicao; }
+    public String getClubeAtual() { return clubeAtual; }
+    public void setClubeAtual(String clubeAtual) { this.clubeAtual = clubeAtual; }
+    public double getValorDeMercado() { return valorDeMercado; }
+    public void setValorDeMercado(double valorDeMercado) { this.valorDeMercado = valorDeMercado; }
+
+    @Override
+    public void realizarTransferencia() {
+        System.out.println("Transferência realizada para o jogador " + getNome());
+    }
+
+    @Override
+    public void cancelarTransferencia() {
+        System.out.println("Transferência cancelada para o jogador " + getNome());
+    }
+}
