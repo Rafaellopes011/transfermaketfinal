@@ -1,0 +1,37 @@
+import javax.swing.*;
+
+public class TransferMarketApp {
+    public static void main(String[] args) {
+        GestorTransferencias gestor = new GestorTransferencias();
+
+        try {
+            Jogador jogador = new Jogador("Cristiano Ronaldo", 39, "Português", "Atacante", "Juventus", 100_000_000);
+            Clube clubeOrigem = new Clube("Juventus", 500_000_000);
+            Clube clubeDestino = new Clube("Manchester United", 600_000_000);
+            Transferencia transferencia = new Transferencia(jogador, clubeOrigem, clubeDestino, 100_000_000, "27/08/2024");
+            gestor.adicionarTransferencia(transferencia);
+
+            String caminhoArquivo = "data/transferencias.csv";
+            gestor.salvarEmArquivo(caminhoArquivo);
+            System.out.println("Transferências salvas em " + caminhoArquivo);
+
+            gestor.carregarDeArquivo(caminhoArquivo);
+            System.out.println("Transferências carregadas do arquivo:");
+            for (Transferencia t : gestor.getTransferencias()) {
+                System.out.println("Jogador: " + t.getJogador().getNome() +
+                        ", Idade: " + t.getJogador().getIdade() +
+                        ", Posição: " + t.getJogador().getPosicao() +
+                        ", Nacionalidade: " + t.getJogador().getNacionalidade() +
+                        ", Clube Origem: " + t.getClubeOrigem().getNome() +
+                        ", Clube Destino: " + t.getClubeDestino().getNome() +
+                        ", Valor: " + String.format("%.0f", t.getValor()) +
+                        ", Data da Transferência: " + t.getData());
+            }
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+
+        JFrame frame = new JFrame("Transfer Market");
+        JOptionPane.showMessageDialog(frame, "Bem-vindo ao Transfer Market!");
+    }
+}
