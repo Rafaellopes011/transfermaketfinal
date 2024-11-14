@@ -2,36 +2,47 @@ import javax.swing.*;
 
 public class TransferMarketApp {
     public static void main(String[] args) {
-        GestorTransferencias gestor = new GestorTransferencias();
+        
+        JFrame frame = new JFrame("Transfer Market - Login");
+        String usuario = JOptionPane.showInputDialog(frame, "Digite seu nome de usuário:");
+        String senha = JOptionPane.showInputDialog(frame, "Digite sua senha:");
+        
+        String usuarioCorreto = "Lopes";
+        String senhaCorreta = "123456";
+        
+        if (usuario != null && senha != null && usuario.equals(usuarioCorreto) && senha.equals(senhaCorreta)) {
+            JOptionPane.showMessageDialog(frame, "Login bem-sucedido! Bem-vindo ao Transfer Market!");
+            
+            GestorTransferencias gestor = new GestorTransferencias();
 
-        try {
-            Jogador jogador = new Jogador("Cristiano Ronaldo", 39, "Português", "Atacante", "Juventus", 100_000_000);
-            Clube clubeOrigem = new Clube("Juventus", 500_000_000);
-            Clube clubeDestino = new Clube("Manchester United", 600_000_000);
-            Transferencia transferencia = new Transferencia(jogador, clubeOrigem, clubeDestino, 100_000_000, "27/08/2024");
-            gestor.adicionarTransferencia(transferencia);
+            try {
+                Jogador jogador = new Jogador("Cristiano Ronaldo", 39, "Português", "Atacante", "Juventus", 100_000_000);
+                Clube clubeOrigem = new Clube("Juventus", 500_000_000);
+                Clube clubeDestino = new Clube("Manchester United", 600_000_000);
+                Transferencia transferencia = new Transferencia(jogador, clubeOrigem, clubeDestino, 100_000_000, "27/08/2024");
+                gestor.adicionarTransferencia(transferencia);
 
-            String caminhoArquivo = "data/transferencias.csv";
-            gestor.salvarEmArquivo(caminhoArquivo);
-            System.out.println("Transferências salvas em " + caminhoArquivo);
+                String caminhoArquivo = "data/transferencias.csv";
+                gestor.salvarEmArquivo(caminhoArquivo);
+                System.out.println("Transferências salvas em " + caminhoArquivo);
 
-            gestor.carregarDeArquivo(caminhoArquivo);
-            System.out.println("Transferências carregadas do arquivo:");
-            for (Transferencia t : gestor.getTransferencias()) {
-                System.out.println(" * Jogador: " + t.getJogador().getNome());
-                System.out.println(" * Idade: " + t.getJogador().getIdade());
-                System.out.println(" * Posição: " + t.getJogador().getPosicao());
-                System.out.println(" * Nacionalidade: " + t.getJogador().getNacionalidade());
-                System.out.println(" * Clube Origem: " + t.getClubeOrigem().getNome());
-                System.out.println(" * Clube Destino: " + t.getClubeDestino().getNome());
-                System.out.println(" * Valor: " + String.format("%.0f", t.getValor()));
-                System.out.println(" * Data da Transferência: " + t.getData());
+                gestor.carregarDeArquivo(caminhoArquivo);
+                System.out.println("Transferências carregadas do arquivo:");
+                for (Transferencia t : gestor.getTransferencias()) {
+                    System.out.println(" * Jogador: " + t.getJogador().getNome());
+                    System.out.println(" * Idade: " + t.getJogador().getIdade());
+                    System.out.println(" * Posição: " + t.getJogador().getPosicao());
+                    System.out.println(" * Nacionalidade: " + t.getJogador().getNacionalidade());
+                    System.out.println(" * Clube Origem: " + t.getClubeOrigem().getNome());
+                    System.out.println(" * Clube Destino: " + t.getClubeDestino().getNome());
+                    System.out.println(" * Valor: " + String.format("%.0f", t.getValor()));
+                    System.out.println(" * Data da Transferência: " + t.getData());
+                }
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
             }
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(frame, "Login falhou! Verifique seu nome de usuário e senha.");
         }
-
-        JFrame frame = new JFrame("Transfer Market");
-        JOptionPane.showMessageDialog(frame, "Bem-vindo ao Transfer Market!");
     }
 }
