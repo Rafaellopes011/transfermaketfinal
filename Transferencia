@@ -19,12 +19,24 @@ class Transferencia {
         this.status = "Pendente";
     }
 
-    public Jogador getJogador() { return jogador; }
-    public Clube getClubeOrigem() { return clubeOrigem; }
-    public Clube getClubeDestino() { return clubeDestino; }
-    public double getValor() { return valor; }
-    public String getData() { return data; }
-    public String getStatus() { return status; }
+    public Jogador getJogador() { 
+        return jogador; 
+    }
+    public Clube getClubeOrigem() { 
+        return clubeOrigem; 
+    }
+    public Clube getClubeDestino() { 
+        return clubeDestino; 
+    }
+    public double getValor() { 
+        return valor; 
+    }
+    public String getData() { 
+        return data; 
+    }
+    public String getStatus() { 
+        return status; 
+    }
 
     public void completarTransferencia() {
         this.status = "Completada";
