@@ -11,10 +11,22 @@ class Clube {
         this.orcamento = orcamento;
     }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
-    public double getOrcamento() { return orcamento; }
-    public void setOrcamento(double orcamento) { this.orcamento = orcamento; }
-    public ArrayList<Jogador> getJogadores() { return jogadores; }
-    public ArrayList<Transferencia> getHistoricoTransferencias() { return historicoTransferencias; }
+    public String getNome() { 
+        return nome; 
+    }
+    public void setNome(String nome) { 
+        this.nome = nome;
+    }
+    public double getOrcamento() { 
+        return orcamento; 
+    }
+    public void setOrcamento(double orcamento) { 
+        this.orcamento = orcamento; 
+    }
+    public ArrayList<Jogador> getJogadores() { 
+        return jogadores; 
+    }
+    public ArrayList<Transferencia> getHistoricoTransferencias() { 
+        return historicoTransferencias; 
+    }
 }
