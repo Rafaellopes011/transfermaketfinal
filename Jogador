@@ -10,12 +10,24 @@ class Jogador extends Pessoa implements Transacionavel {
         this.valorDeMercado = valorDeMercado;
     }
 
-    public String getPosicao() { return posicao; }
-    public void setPosicao(String posicao) { this.posicao = posicao; }
-    public String getClubeAtual() { return clubeAtual; }
-    public void setClubeAtual(String clubeAtual) { this.clubeAtual = clubeAtual; }
-    public double getValorDeMercado() { return valorDeMercado; }
-    public void setValorDeMercado(double valorDeMercado) { this.valorDeMercado = valorDeMercado; }
+    public String getPosicao() { 
+        return posicao; 
+    }
+    public void setPosicao(String posicao) { 
+        this.posicao = posicao; 
+    }
+    public String getClubeAtual() { 
+        return clubeAtual; 
+    }
+    public void setClubeAtual(String clubeAtual) { 
+        this.clubeAtual = clubeAtual; 
+    }
+    public double getValorDeMercado() { 
+        return valorDeMercado; 
+    }
+    public void setValorDeMercado(double valorDeMercado) { 
+        this.valorDeMercado = valorDeMercado; 
+    }
 
     @Override
     public void realizarTransferencia() {
