@@ -24,7 +24,7 @@ class GestorTransferencias implements Registravel {
                         t.getClubeOrigem().getNome(),
                         t.getClubeDestino().getNome(),
                         t.getValor(),
-                        t.getData(),  // Salva a data formatada corretamente
+                        t.getData(),  
                         t.getStatus()));
             }
         }
@@ -41,7 +41,7 @@ class GestorTransferencias implements Registravel {
         }
 
         try (BufferedReader reader = new BufferedReader(new FileReader(arquivo))) {
-            String linha = reader.readLine(); // Ignora a primeira linha de cabeçalho
+            String linha = reader.readLine(); 
             while ((linha = reader.readLine()) != null) {
                 String[] campos = linha.split(",");
                 String nomeJogador = campos[0];
@@ -55,7 +55,7 @@ class GestorTransferencias implements Registravel {
                 Clube clubeOrigem = new Clube(clubeOrigemNome, 0);
                 Clube clubeDestino = new Clube(clubeDestinoNome, 0);
 
-                Transferencia transferencia = new Transferencia(jogador, clubeOrigem, clubeDestino, valor, dataStr); // Lê a data como string e converte para Date
+                Transferencia transferencia = new Transferencia(jogador, clubeOrigem, clubeDestino, valor, dataStr);
                 if (status.equals("Completada")) {
                     transferencia.completarTransferencia();
                 }
