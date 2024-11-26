@@ -1,18 +1,23 @@
+
 import javax.swing.*;
 
 public class TransferMarketApp {
     public static void main(String[] args) {
-        
+
         JFrame frame = new JFrame("Transfer Market - Login");
         String usuario = JOptionPane.showInputDialog(frame, "Digite seu nome de usuário:");
         String senha = JOptionPane.showInputDialog(frame, "Digite sua senha:");
-        
+
         String usuarioCorreto = "Lopes";
         String senhaCorreta = "123456";
-        
-        if (usuario != null && senha != null && usuario.equals(usuarioCorreto) && senha.equals(senhaCorreta)) {
+
+        while(usuario != null && senha != null && !usuario.equals(usuarioCorreto) && !senha.equals(senhaCorreta)) {
+            JOptionPane.showMessageDialog(frame, "Login falhou! Verifique seu nome de usuário e senha.");
+            usuario = JOptionPane.showInputDialog(frame, "Digite seu nome de usuário:");
+            senha = JOptionPane.showInputDialog(frame, "Digite sua senha:");
+        }
             JOptionPane.showMessageDialog(frame, "Login bem-sucedido! Bem-vindo ao Transfer Market!");
-            
+
             GestorTransferencias gestor = new GestorTransferencias();
 
             try {
@@ -41,8 +46,7 @@ public class TransferMarketApp {
             } catch (Exception e) {
                 System.out.println("Erro: " + e.getMessage());
             }
-        } else {
-            JOptionPane.showMessageDialog(frame, "Login falhou! Verifique seu nome de usuário e senha.");
-        }
-    }
-}
+       }
+ }
+
+
