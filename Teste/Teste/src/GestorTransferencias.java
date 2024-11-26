@@ -1,0 +1,73 @@
+import java.io.*;
+import java.util.ArrayList;
+
+class GestorTransferencias implements Registravel {
+    private ArrayList<Transferencia> transferencias = new ArrayList<>();
+
+    public void adicionarTransferencia(Transferencia transferencia) {
+        transferencias.add(transferencia);
+    }
+
+    @Override
+    public void salvarEmArquivo(String caminho) throws IOException {
+        File arquivo = new File(caminho);
+        if (!arquivo.exists()) {
+            arquivo.getParentFile().mkdirs();
+            arquivo.createNewFile();
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo))) {
+            writer.write("jogador,clubeOrigem,clubeDestino,valor,data,status\n");
+            for (Transferencia t : transferencias) {
+                writer.write(String.format("%s,%s,%s,%.0f,%s,%s\n",
+                        t.getJogador().getNome(),
+                        t.getClubeOrigem().getNome(),
+                        t.getClubeDestino().getNome(),
+                        t.getValor(),
+                        t.getData(),
+                        t.getStatus()));
+            }
+        }
+    }
+
+    @Override
+    public void carregarDeArquivo(String caminho) throws IOException {
+        transferencias.clear();
+        File arquivo = new File(caminho);
+
+        if (!arquivo.exists()) {
+            System.out.println("Arquivo não encontrado: " + caminho);
+            return;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(arquivo))) {
+            String linha = reader.readLine();
+            while ((linha = reader.readLine()) != null) {
+                String[] campos = linha.split(",");
+                String nomeJogador = campos[0];
+                String clubeOrigemNome = campos[1];
+                String clubeDestinoNome = campos[2];
+                double valor = Double.parseDouble(campos[3]);
+                String dataStr = campos[4];
+                String status = campos[5];
+
+                Jogador jogador = new Jogador(nomeJogador, 39, "português", "Atacante", clubeOrigemNome, valor);
+                Clube clubeOrigem = new Clube(clubeOrigemNome);
+                Clube clubeDestino = new Clube(clubeDestinoNome);
+
+                Transferencia transferencia = new Transferencia(jogador, clubeOrigem, clubeDestino, valor, dataStr);
+                if (status.equals("Completada")) {
+                    transferencia.completarTransferencia();
+                }
+
+                transferencias.add(transferencia);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao carregar transferências: " + e.getMessage());
+        }
+    }
+
+    public ArrayList<Transferencia> getTransferencias() {
+        return transferencias;
+    }
+}
